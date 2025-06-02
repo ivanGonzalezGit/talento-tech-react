@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Nav from './components/Nav';
 import Carrito from './components/Carrito';
 import MostrarCarrito from './components/MostrarCarrito';
-import Footer from './components/footer';
+import Footer from './components/Footer';
 
 function App() {
 
