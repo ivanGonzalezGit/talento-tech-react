@@ -1,4 +1,5 @@
 import React from 'react';  
+import { Link } from 'react-router-dom';
 
 
 function Nav() { 
@@ -25,8 +26,8 @@ function Nav() {
     return (  
         <nav style={estilo}>  
             <ul style={estiloLista}>  
-                <li><a href="#" style={estiloItems}>Galería</a></li>  
-                <li><a href="#" style={estiloItems}>Carrito</a></li>  
+                <li><Link to="/" style={estiloItems}>Inicio</Link></li>
+                <li><Link to="/carrito" style={estiloItems}>Carrito</Link></li> 
             </ul>  
         </nav>  
     );  

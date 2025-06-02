@@ -1,60 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Gallery from './Gallery';
-
-function MostrarCarrito({carrito, quitarItemCarrito})
-{
-
-    return (
-        <ul>
-            {carrito.map(item => (
-                <li key={item.id}>
-                    {item.title} - ${item.price} 
-                    <button onClick={() => quitarItemCarrito(item.id)}>
-                        Quitar producto
-                    </button>
-                </li>
-            ))}
-        </ul>
-    )
-}
 
 
 function Carrito() {
     const [carrito, setCarrito] = useState([]);
 
+    //utilizo useEffect para que el localStorage espere a que se cambie el carrito para actualizarse.
+    useEffect(() => {
+        localStorage.setItem('miCarrito', JSON.stringify(carrito));
+    }, [carrito]);
+
     function agregarAlCarrito(item) {
         setCarrito(prevCarrito => [...prevCarrito, item]);
+        localStorage.setItem('miCarrito', JSON.stringify(carrito));
     }
 
-    function quitarItemCarrito(id) {
-        setCarrito(prevCarrito => prevCarrito.filter(producto => producto.id !== id));
-    }
+    return (
+        <Gallery agregarAlCarrito={agregarAlCarrito}/>
+    )
 
-    function vaciarCarrito() {
-        setCarrito([]);
-    }
-
-    if (carrito.length === 0) {
-        return (
-            <div>
-                <p>El carrito está vacío</p>
-                <div style={{ padding: "20px" }}>
-
-                </div>
-                <Gallery agregarAlCarrito={agregarAlCarrito}/>
-            </div>
-        );
-    } else {
-        return (
-            <main style={{ padding: "20px" }}>
-                <h2>Carrito de Compras</h2>
-                <button onClick={vaciarCarrito}>Vaciar Carrito</button>
-                <MostrarCarrito carrito={carrito} quitarItemCarrito={quitarItemCarrito}/>
-                <Gallery agregarAlCarrito={agregarAlCarrito}/>
-            </main>
-        );
-    }
 }
 
 export default Carrito;
-

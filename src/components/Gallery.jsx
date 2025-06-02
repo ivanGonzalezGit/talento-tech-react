@@ -12,19 +12,17 @@ function Gallery({ agregarAlCarrito }) {
                 setData(res);
                 setLoading(false);
             })
-            .catch(err => {
-                setError("No se pudieron cargar los productos");
-                setLoading(false);
-            });
+            .catch((error) => {
+              setError('Hubo un problema al cargar los productos.');
+              setCargando(false);
+          });
     }, []);
 
     if (loading) {
         return <p>Cargando...</p>;
     }
 
-    if (error) {
-        return <p>{error}</p>;
-    }
+    if (error) return <p>{error}</p>;
 
     return (
         <section style={{ display: "flex", gap: "10px", justifyContent: "center", marginTop: "20px", flexWrap: "wrap" }}>

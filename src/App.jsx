@@ -1,12 +1,9 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import Carrito from './components/Carrito';
-import Gallery from './components/Gallery';
+import MostrarCarrito from './components/MostrarCarrito';
 import Footer from './components/footer';
 
 function App() {
@@ -15,9 +12,12 @@ function App() {
     <>
       <Header />
       <Nav />
-      <Carrito />
-      <Gallery />
+      <Routes>
+        <Route path="/" element={ <Carrito /> } />
+        <Route path="/carrito" element={ <MostrarCarrito/> } />
+      </Routes>
       <Footer />
+
     </>
   )
 }
